@@ -2,6 +2,8 @@
 Changelog
 =========
 
+7.0.1 (2026-03-02)
+------------------
 
 * Fixed total coverage computation to always be consistent, regardless of reporting settings.
   Previously some reports could produce different total counts, and consequently can make --cov-fail-under behave different depending on
