@@ -5,11 +5,10 @@ source =
 
 [run]
 branch = true
-parallel = true
 source =
     example
     .
 
 [report]
-show_missing = true
 precision = 2
+show_missing = true
