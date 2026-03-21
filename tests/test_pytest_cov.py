@@ -1987,6 +1987,9 @@ def test_contexts(pytester, testdir, opts):
     with Path(__file__).parent.joinpath('contextful.py').open() as f:
         contextful_tests = f.read()
     script = testdir.makepyfile(contextful_tests)
+    testdir.tmpdir.join('.coveragerc').write("""[run]
+core = ctrace""")
+
     result = testdir.runpytest('-v', f'--cov={script.dirpath()}', '--cov-context=test', script, *opts.split())
     assert result.ret == 0
     result.stdout.fnmatch_lines(
