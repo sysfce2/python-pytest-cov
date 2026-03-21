@@ -2,24 +2,25 @@
 Configuration
 =============
 
-This plugin provides a clean minimal set of command line options that are added to pytest.  For
-further control of coverage use a coverage config file.
+This plugin provides a clean minimal set of command line options that are added to pytest. For
+further control of coverage use a `coverage config file`_.
 
-For example if tests are contained within the directory tree being measured the tests may be
-excluded if desired by using a .coveragerc file with the omit option set::
+CLI options:
+  --cov [SOURCE]        Path or package name to measure during execution (multi-allowed). Use --cov= to not do any source filtering and record everything.
+  --cov-reset           Reset cov sources accumulated in options so far.
+  --cov-report TYPE     Type of report to generate: term, term-missing, annotate, html, xml, json, markdown, markdown-append, lcov (multi-allowed). term, term-missing may be followed by ":skip-covered".
+                        annotate, html, xml, json, markdown, markdown-append and lcov may be followed by ":DEST" where DEST specifies the output location. Use --cov-report= to not generate any output.
+  --cov-config PATH     Config file for coverage. Default: .coveragerc
+  --no-cov-on-fail      Do not report coverage if test run fails. Default: False
+  --no-cov              Disable coverage report completely (useful for debuggers). Default: False
+  --cov-fail-under MIN  Fail if the total coverage is less than MIN.
+  --cov-append          Do not delete coverage but append to current. Default: False
+  --cov-branch          Enable branch coverage. Can also be specified in the `coverage config file`_ ``[run]`` section.
+  --cov-precision COV_PRECISION
+                        Override the reporting precision. Can also be specified in the `coverage config file`_ ``[report]`` section.
+  --cov-context CONTEXT
+                        Dynamic contexts to use. "test" for now.
 
-    pytest --cov-config=.coveragerc
-           --cov=myproj
-           myproj/tests/
-
-Where the .coveragerc file contains file globs::
-
-    [run]
-    omit = tests/*
-
-For full details refer to the `coverage config file`_ documentation.
-
-.. _`coverage config file`: https://coverage.readthedocs.io/en/latest/config.html
 
 .. note:: Important Note
 
@@ -32,7 +33,7 @@ For full details refer to the `coverage config file`_ documentation.
 
     If you use the ``--cov-branch`` option then coverage's ``branch`` option will also get overridden.
 
-If you wish to always add pytest-cov with pytest, you can use ``addopts`` under the ``pytest`` or ``tool:pytest`` section of
+If you wish to always run pytest-cov with pytest, you can use ``addopts`` under the ``pytest`` or ``tool:pytest`` section of
 your ``setup.cfg``, or the ``tool.pytest.ini_options`` section of your ``pyproject.toml`` file.
 
 For example, in ``setup.cfg``: ::
@@ -44,6 +45,12 @@ Or for ``pyproject.toml``: ::
 
     [tool.pytest.ini_options]
     addopts = "--cov=<project-name> --cov-report html"
+
+
+.. note:: Important Note
+
+    The ``--cov`` option has an optional argument. If it's your last option in addopts_ it might eat the next CLI argument, make sure to
+    force it to take a blank value if that's what you wanted by using ``--cov=`` (essentially the same as ``--cov=""``).
 
 Caveats
 =======
@@ -57,27 +64,5 @@ might need to use ``--cov-config`` to make coverage use the correct configuratio
 Also, if you change the working directory and also use subprocesses in a test you might also need to use ``--cov-config`` to make pytest-cov
 use the expected configuration file in the subprocess.
 
-Reference
-=========
-
-The complete list of command line options is:
-
---cov=PATH            Measure coverage for filesystem path. (multi-allowed)
---cov-report=type     Type of report to generate: term, term-missing,
-                      annotate, html, xml, json, markdown, markdown-append, lcov (multi-allowed). term, term-
-                      missing may be followed by ":skip-covered". annotate,
-                      html, xml, json, markdown, markdown-append and lcov may be followed by ":DEST" where DEST
-                      specifies the output location. Use --cov-report= to
-                      not generate any output.
---cov-config=path     Config file for coverage. Default: .coveragerc
---no-cov-on-fail      Do not report coverage if test run fails. Default:
-                      False
---no-cov              Disable coverage report completely (useful for
-                      debuggers). Default: False
---cov-reset           Reset cov sources accumulated in options so far.
-                      Mostly useful for scripts and configuration files.
---cov-fail-under=MIN  Fail if the total coverage is less than MIN.
---cov-append          Do not delete coverage but append to current. Default:
-                      False
---cov-branch          Enable branch coverage.
---cov-context         Choose the method for setting the dynamic context.
+.. _`coverage config file`: https://coverage.readthedocs.io/en/latest/config.html
+.. _addopts: https://docs.pytest.org/en/stable/reference/reference.html#confval-addopts>
