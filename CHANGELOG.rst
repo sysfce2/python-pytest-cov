@@ -2,7 +2,7 @@
 Changelog
 =========
 
-7.0.1 (2026-03-21)
+7.1.0 (2026-03-21)
 ------------------
 
 * Fixed total coverage computation to always be consistent, regardless of reporting settings.
@@ -26,7 +26,7 @@ Changelog
   Also closed `#736 <https://github.com/pytest-dev/pytest-cov/issues/736>`_.
 * Fixed some assertions in tests.
   Contributed by in Markéta Machová in `#722 <https://github.com/pytest-dev/pytest-cov/pull/722>`_.
-
+* Removed unnecessary coverage configuration copying (meant as a backup because reporting commands had configuration side-effects before coverage 5.0).
 
 7.0.0 (2025-09-09)
 ------------------
