@@ -65,3 +65,5 @@ Authors
 * Tsvika Shapira - https://github.com/tsvikas
 * Marcos Boger - https://github.com/marcosboger
 * Ofek Lev - https://github.com/ofek
+* Art Pelling - https://github.com/artpelling
+* Markéta Machová - https://github.com/MeggyCal

@@ -2,7 +2,7 @@
 Changelog
 =========
 
-7.0.1 (2026-03-02)
+7.0.1 (2026-03-21)
 ------------------
 
 * Fixed total coverage computation to always be consistent, regardless of reporting settings.
@@ -20,7 +20,12 @@ Changelog
   With this fix one can suppress ``ResourceWarning`` from sqlite3 from command line::
 
     pytest -W "ignore:unclosed database in <sqlite3.Connection object at:ResourceWarning" ...
-
+* Various improvements to documentation.
+  Contributed by Art Pelling in `#718 <https://github.com/pytest-dev/pytest-cov/pull/718>`_ and
+  "vivodi" in `#738 <https://github.com/pytest-dev/pytest-cov/pull/738>`_.
+  Also closed `#736 <https://github.com/pytest-dev/pytest-cov/issues/736>`_.
+* Fixed some assertions in tests.
+  Contributed by in Markéta Machová in `#722 <https://github.com/pytest-dev/pytest-cov/pull/722>`_
 7.0.0 (2025-09-09)
 ------------------
 
