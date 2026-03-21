@@ -152,7 +152,7 @@ class CovController:
         """Produce coverage reports."""
 
         with _backup(self.cov, 'config'):
-            total = self.cov.report(ignore_errors=True, output_format='total', file=_NullFile)
+            total = self.cov.report(ignore_errors=True, output_format='total', precision=self.cov_precision, file=_NullFile)
 
         # Output coverage section header.
         if len(self.node_descs) == 1:
